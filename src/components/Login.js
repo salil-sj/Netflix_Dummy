@@ -1,11 +1,60 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import Header from "./Header";
+import { checkValidData } from "../utils/validate";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../utils/firebase";
 
 const Login = () => {
   const [isSigninForm, setIsSignInForm] = useState(true);
+  const [errorMsg, setErrorMsg] = useState(null);
+
+  const email = useRef(null);
+  const password = useRef(null);
 
   const toggleSignInForm = () => {
     setIsSignInForm(!isSigninForm);
+  };
+
+  const handleButtonClick = () => {
+    // Validate the form data:
+    const message = checkValidData(email.current.value, password.current.value);
+    setErrorMsg(message);
+
+    if (message) return;
+    
+
+    // Sign in / Sign up logic
+    if (!isSigninForm) {
+      // Sign up logic
+      createUserWithEmailAndPassword(auth, email.current.value, password.current.value)
+        .then((userCredential) => {
+          // Signed in
+          const user = userCredential.user;
+          console.log(user)
+          // ...
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          // ..
+          setErrorMsg(errorCode + " : " + errorMessage)
+        });
+    } else {
+      // Sign in logic
+
+      signInWithEmailAndPassword(auth, email.current.value, password.current.value)
+  .then((userCredential) => {
+    // Signed in 
+    const user = userCredential.user;
+    console.log(user)
+    // ...
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    setErrorMsg(errorCode + " : " + errorMessage)
+  });
+    }
   };
 
   return (
@@ -17,7 +66,10 @@ const Login = () => {
           alt="background-logo"
         />
       </div>
-      <form className="absolute p-12 bg-black w-4/12     my-32 mx-auto right-0 left-0 text-white bg-opacity-80">
+      <form
+        onClick={(e) => e.preventDefault()}
+        className="absolute p-12 bg-black w-4/12     my-32 mx-auto right-0 left-0 text-white bg-opacity-80"
+      >
         <h1 className="font-bold text-3xl py-4 ">
           {" "}
           {isSigninForm ? "Sign In" : "Sign Up"}
@@ -32,19 +84,24 @@ const Login = () => {
         )}
 
         <input
+          ref={email}
           type="text"
           placeholder="Email Address"
           className="p-4 my-2  w-full bg-slate-600 rounded-md"
         />
 
-       
-
         <input
+          ref={password}
           type="password"
           placeholder="Password"
           className="p-4 my-2 w-full bg-slate-600 rounded-md"
         />
-        <button className="p-4 my-4 bg-red-700 w-full rounded-md">
+        <p className="text-red-700 p-2 text-lg font-bold">{errorMsg}</p>
+
+        <button
+          className="p-4 my-4 bg-red-700 w-full rounded-md"
+          onClick={handleButtonClick}
+        >
           {isSigninForm ? "Sign In" : "Sign Up"}
         </button>
 
