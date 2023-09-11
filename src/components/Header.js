@@ -19,13 +19,13 @@ const Header = () => {
   };
 
   useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         const { uid, email, displayName } = user;
         dispatch(addUser({ uid: uid, email: email, displayName: displayName }));
 
         navigate("/browse")
-        // ...
+        // ...  
       } else {
         // User is signed out
         // ...
@@ -33,6 +33,8 @@ const Header = () => {
         navigate("/")
       }
     });
+    return ()=> unsubscribe(); // Kind of like handling or detaching th event listner whic is onAuthStateChange
+
   }, []);
 
   return (
