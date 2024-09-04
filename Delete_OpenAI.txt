@@ -341,25 +341,38 @@ COPY src/frontend/ ./
 # Step 6: Build the React application
 RUN npm run build
 
-1. **Form Structure:**
-   - Include 4-5 fields:
+1. **Navbar:**
+   - A top navigation bar that includes:
+     - A brand logo or name
+     - Navigation links (e.g., Home, About, Contact)
+     - A user profile icon or menu
+
+2. **Sidebar:**
+   - A sidebar that includes:
+     - A list of menu items (e.g., Dashboard, Settings, Profile)
+     - A collapsible or expandable section for additional options
+
+3. **Main Content Area:**
+   - Include a form component with the following fields:
      - **Text Input:** For user name
      - **Email Input:** For user email
      - **Password Input:** For user password
      - **Radio Buttons:** For selecting gender (Male, Female, Other)
      - **Scrollable Dropdown:** For selecting a country from a long list
 
-2. **Design and Aesthetics:**
-   - **Layout:** Center the form on the page with ample padding and margin. Ensure the form has a clean, minimalist design.
+4. **Footer:**
+   - A footer section that includes:
+     - Copyright information
+     - Links to privacy policy and terms of service
+
+5. **Design and Aesthetics:**
+   - **Layout:** Center the form within the main content area. Ensure the layout is clean and well-structured with ample padding and margins.
    - **Colors:** Use a modern color palette with shades of gray, white, and accent colors. Incorporate subtle shadows and borders for a sleek look.
    - **Typography:** Use bold headings and clear, readable text. Implement a consistent font family and size.
    - **Buttons:** Style buttons with rounded corners, hover effects, and primary colors that stand out.
    - **Inputs and Fields:** Ensure inputs have clear borders, padding, and labels. Include floating labels or placeholders where appropriate.
-   - **Responsiveness:** Make sure the form is fully responsive, adapting gracefully to different screen sizes and devices.
+   - **Responsiveness:** Make sure the entire layout is fully responsive, adapting gracefully to different screen sizes and devices.
 
-3. **Functional Requirements:**
-   - Include basic validation for required fields and display appropriate error messages.
-   - Ensure that the form is user-friendly with interactive elements like smooth transitions and feedback.
 
 
 
