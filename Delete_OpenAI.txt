@@ -375,4 +375,19 @@ RUN npm run build
 
 
 
+A navigation bar with a logo on the left and a list of menu items on the right.
+A form page with the following fields:
+Name: A text input field with a placeholder.
+Email: An email input field with validation.
+Gender: A radio button group with options for "Male," "Female," and "Other."
+Interests: A scrollable input field with multiple selection options.
+Message: A textarea field for a longer message.
+Appropriate styling for a modern, visually appealing website. Use a consistent color palette, appropriate font sizes, and proper spacing (margins and padding) to create a user-friendly layout.
+Additional notes:
+
+Design inspiration: Consider looking at popular websites like Facebook, Instagram, or Material Design guidelines for inspiration on modern UI design trends.
+CSS frameworks: If you're familiar with CSS frameworks like Bootstrap or Tailwind CSS, you can incorporate them into your prompt to streamline the styling process.
+Specific styling preferences: If you have specific color preferences or font choices, you can include these in your prompt. For example, "Use a blue color palette with a sans-serif font."
+
+
 
