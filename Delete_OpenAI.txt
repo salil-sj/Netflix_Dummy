@@ -341,8 +341,27 @@ COPY src/frontend/ ./
 # Step 6: Build the React application
 RUN npm run build
 
-# Step 7: Expose the port that the app runs on
-EXPOSE 3000
+Please generate the code for a modern, responsive form component with the following specifications:
+
+1. **Form Structure:**
+   - Include 4-5 fields: Text input, email input, password input, radio buttons, and a scrollable dropdown.
+   - Ensure that the form is visually appealing and follows modern web design principles.
+
+2. **UI Elements:**
+   - **Text Input:** For user name.
+   - **Email Input:** For user email.
+   - **Password Input:** For user password.
+   - **Radio Buttons:** For selecting gender (Male, Female, Other).
+   - **Scrollable Dropdown:** For selecting a country from a long list.
+
+3. **Styling and Layout:**
+   - Use modern design practices with proper colors, margins, and padding.
+   - Ensure the form is responsive and looks good on both desktop and mobile devices.
+   - Apply a clean, minimalist design with consistent spacing and alignment.
+
+4. **Functional Requirements:**
+   - Include basic validation for required fields.
+   - Ensure the form is easy to use and visually attractive.
 
 # Step 8: Define the command to start the application
 CMD ["npm", "start"]
