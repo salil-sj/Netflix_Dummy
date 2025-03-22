@@ -1,1 +1,41 @@
-hell this is java code for cheating 
+first solution
+
+static int nonRepeatingDigitProductCount(int x, int y, int z) {
+    int count = 0;
+    
+    // For each number in the range [y, z]
+    for (int n = y; n <= z; n++) {
+        int product = x * n;
+        
+        // Check if the product contains any digit from n
+        if (hasNoCommonDigits(n, product)) {
+            count++;
+        }
+    }
+    
+    return count;
+}
+
+// Helper function to check if a product contains any digit from the original number
+static boolean hasNoCommonDigits(int number, int product) {
+    // Convert product to string for easy digit access
+    String productStr = String.valueOf(product);
+    
+    // Check each digit of the original number
+    int temp = number;
+    while (temp > 0) {
+        int digit = temp % 10;
+        // Convert digit to character to search in product string
+        char digitChar = (char) ('0' + digit);
+        
+        // If the digit exists in the product, return false
+        if (productStr.indexOf(digitChar) >= 0) {
+            return false;
+        }
+        
+        temp /= 10;
+    }
+    
+    // No common digits found
+    return true;
+}
