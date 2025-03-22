@@ -39,3 +39,46 @@ static boolean hasNoCommonDigits(int number, int product) {
     // No common digits found
     return true;
 }
+#################################################################################
+public static long calculatePossibleCombinations(String inputstr) {
+    // Edge case: empty string
+    if (inputstr == null || inputstr.isEmpty()) {
+        return 0;
+    }
+    
+    int n = inputstr.length();
+    
+    // dp[i] represents the number of ways to decode the substring inputstr[0...i-1]
+    long[] dp = new long[n + 1];
+    
+    // Base case: empty string has 1 way to decode (do nothing)
+    dp[0] = 1;
+    
+    // Fill the dp array
+    for (int i = 1; i <= n; i++) {
+        // Current digit
+        char currentDigit = inputstr.charAt(i - 1);
+        
+        // Check if single digit is valid (1-9)
+        if (currentDigit >= '1' && currentDigit <= '9') {
+            dp[i] += dp[i - 1];
+        }
+        
+        // Check if we can form a two-digit number (10-26)
+        if (i > 1) {
+            char prevDigit = inputstr.charAt(i - 2);
+            
+            // Avoid sequences like "01", "02", etc.
+            if (prevDigit == '1' || (prevDigit == '2' && currentDigit <= '6')) {
+                dp[i] += dp[i - 2];
+            }
+        }
+        
+        // If no valid way to decode this position, return 0
+        if (dp[i] == 0) {
+            return 0;
+        }
+    }
+    
+    return dp[n];
+}
